@@ -45,7 +45,7 @@ class Snake {
                 this.speedX += this.speed;
                 this.speedY = 0;
                 break;
-            case scale:
+            case -scale:
                 this.speedX *= -1;
                 this.speedY = 0;
                 break;
