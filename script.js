@@ -46,3 +46,21 @@ const columns = canvas.witdth / scale;
 // }
 
 // stopRectangleInterval.addEventListener('click',stopInterval);
+
+class Snake {
+    constructor(){
+        this.witdth = scale;
+        this.height = scale;
+        this.startX = 0;
+        this.startY = 0;
+    }
+
+    init(){
+        ctx.fillStyle = 'rgb(45,140,32)'
+        ctx.fillRect(0,0,this.witdth,this.height);
+    }
+}
+
+const snake = new Snake();
+
+snake.init();
