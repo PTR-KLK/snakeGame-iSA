@@ -48,19 +48,33 @@ const columns = canvas.witdth / scale;
 // stopRectangleInterval.addEventListener('click',stopInterval);
 
 class Snake {
-    constructor(){
+    constructor(startX,startY){
         this.witdth = scale;
         this.height = scale;
-        this.startX = 0;
-        this.startY = 0;
+        this.speed = scale;
+        this.startX = startX;
+        this.startY = startY;
     }
 
     init(){
         ctx.fillStyle = 'rgb(45,140,32)'
-        ctx.fillRect(0,0,this.witdth,this.height);
+        ctx.fillRect(this.startX,this.startY,this.witdth,this.height);
+    }
+    move(){
+        this.startX += this.speed;
     }
 }
 
-const snake = new Snake();
+const posX = 0
+const posY = 0
 
-snake.init();
+const snake = new Snake(posX,posY);
+
+function animationFrame(){
+    ctx.clearRect(0,0,800,800);
+    
+    snake.init();
+    snake.move();
+}
+
+const refreshFrame = setInterval(animationFrame,250);
