@@ -26,60 +26,104 @@ class Snake {
         this.positionY += this.speedY;
     }
 
-    // move(){
-    //     this.positionX += this.speed;
-    // }
-
     moveLeft(){
-        this.speedX -= this.speed;
-        this.speedY = 0;
+        switch(this.speedX){
+            case 0:
+                this.speedX -= this.speed;
+                this.speedY = 0;
+                break;
+            case scale/2:
+                this.speedX *= -1;
+                this.speedY = 0;
+                break;
+        }
     }
 
     moveRight(){
-        this.speedX += this.speed;
-        this.speedY = 0;
+        switch(this.speedX){
+            case 0:
+                this.speedX += this.speed;
+                this.speedY = 0;
+                break;
+            case scale/2:
+                this.speedX *= -1;
+                this.speedY = 0;
+                break;
+        }
     }
     moveDown(){
-        this.speedY += this.speed;
-        this.speedX = 0;
+        switch(this.speedY){
+            case 0:
+                this.speedY += this.speed;
+                this.speedX = 0;
+                break;
+            case -scale/2:
+                this.speedY *= -1;
+                this.speedX = 0;
+                break;
+        }
     }
     moveUp(){
-        this.speedY -= this.speed;
-        this.speedX = 0;
+        switch(this.speedY){
+            case 0:
+                this.speedY -= this.speed;
+                this.speedX = 0;
+                break;
+            case scale/2:
+                this.speedY *= -1;
+                this.speedX = 0;
+                break;
+        }
     }
 }
+
+// class Apple {
+//     // color = '#ff0000'
+//     constructor(){
+//         this.x = (Math.floor(Math.random() * columns -1) + 1) * scale;
+//         this.y = (Math.floor(Math.random() * rows -1) + 1) * scale;
+//         console.log(this.x,this.y);
+//     }
+
+//     draw = () => {
+//         // ctx.fillStyle = this.color;
+//         ctx.fillStyle = 'rgb(45,140,32)';
+//         ctx.fillRect(this.x,this.y, scale, scale);
+//     }
+// }
 
 const posX = 0
 const posY = 0
 
 const snake = new Snake(posX,posY);
+// const apple = new Apple();
 
 function animationFrame(){
     ctx.clearRect(0,0,800,800);
     
     snake.init();
     snake.update();
+    // apple.draw();
     // snake.move();
 }
 
 const refreshFrame = setInterval(animationFrame,100);
 
 document.addEventListener('keydown',e => {
-    if(e.code === 'ArrowLeft'){
-        console.log('strzałka w lewo');
-        snake.moveLeft();
+    
+    switch(e.code){
+        case 'ArrowLeft':
+            snake.moveLeft();
+            break;
+        case 'ArrowRight':
+            snake.moveRight();
+            break;
+        case 'ArrowUp':
+            snake.moveUp();
+            break;
+        case 'ArrowDown':
+            snake.moveDown();
+            break;     
     }
 
-    if(e.code === 'ArrowRight'){
-        console.log('strzałka w prawo');
-        snake.moveRight();
-    }
-    if(e.code === 'ArrowUp'){
-        console.log('strzałka w góre');
-        snake.moveUp();
-    }
-    if(e.code === 'ArrowDown'){
-        console.log('strzałka w dół');
-        snake.moveDown();
-    }
 });
